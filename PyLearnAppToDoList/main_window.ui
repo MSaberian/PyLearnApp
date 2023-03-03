@@ -13,6 +13,16 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>todo-list-icon.jpg</normaloff>todo-list-icon.jpg</iconset>
+  </property>
+  <property name="iconSize">
+   <size>
+    <width>100</width>
+    <height>100</height>
+   </size>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
