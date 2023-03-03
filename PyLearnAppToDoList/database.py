@@ -19,7 +19,7 @@ class Database:
             return True
         except:
             return False
-
+        
     def remove_task(self,id):
         try:
             query = f'DELETE FROM tasks WHERE id = "{id}"'
