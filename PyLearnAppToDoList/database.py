@@ -11,9 +11,9 @@ class Database:
         tasks = result = result.fetchall()
         return tasks
 
-    def add_new_task(self, new_title, new_description):
+    def add_new_task(self, new_title, new_description, Priority, Date):
         try:
-            query = f'INSERT INTO tasks(title, description) VALUES("{new_title}","{new_description}")'
+            query = f'INSERT INTO tasks(title, description, priority, date) VALUES("{new_title}","{new_description}","{Priority}","{Date}")'
             self.cursor.execute(query)
             self.con.commit()
             return True

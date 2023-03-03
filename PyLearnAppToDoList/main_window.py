@@ -15,9 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QGridLayout, QLineEdit, QMainWindow,
-    QMenuBar, QPushButton, QSizePolicy, QStatusBar,
-    QTextEdit, QVBoxLayout, QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QDateTimeEdit, QGridLayout,
+    QHBoxLayout, QLineEdit, QMainWindow, QMenuBar,
+    QPushButton, QSizePolicy, QStatusBar, QTextEdit,
+    QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -37,13 +38,28 @@ class Ui_MainWindow(object):
 
         self.verticalLayout.addLayout(self.gl_tasks)
 
+        self.horizontalLayout = QHBoxLayout()
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.btn_newtask = QPushButton(self.centralwidget)
         self.btn_newtask.setObjectName(u"btn_newtask")
         font = QFont()
         font.setPointSize(15)
         self.btn_newtask.setFont(font)
 
-        self.verticalLayout.addWidget(self.btn_newtask)
+        self.horizontalLayout.addWidget(self.btn_newtask)
+
+        self.cb_priority = QCheckBox(self.centralwidget)
+        self.cb_priority.setObjectName(u"cb_priority")
+
+        self.horizontalLayout.addWidget(self.cb_priority)
+
+        self.dateTimeEdit = QDateTimeEdit(self.centralwidget)
+        self.dateTimeEdit.setObjectName(u"dateTimeEdit")
+
+        self.horizontalLayout.addWidget(self.dateTimeEdit)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout)
 
         self.tb_new_task_title = QLineEdit(self.centralwidget)
         self.tb_new_task_title.setObjectName(u"tb_new_task_title")
@@ -74,5 +90,6 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.btn_newtask.setText(QCoreApplication.translate("MainWindow", u"+", None))
+        self.cb_priority.setText(QCoreApplication.translate("MainWindow", u"Priority", None))
     # retranslateUi
 

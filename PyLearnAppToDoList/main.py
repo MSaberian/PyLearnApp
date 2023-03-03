@@ -19,12 +19,14 @@ class MainWindow(QMainWindow):
     def new_task(self):
         new_title = self.ui.tb_new_task_title.text()
         new_description = self.ui.tb_new_task_description.toPlainText()
-        feedback = self.db.add_new_task(new_title, new_description)
+        Priority = int(not self.ui.cb_priority.isChecked())
+        Date = self.ui.dateTimeEdit.dateTime().toString()
+        feedback = self.db.add_new_task(new_title, new_description, Priority, Date)
         self.ui.tb_new_task_title.clear()
         self.ui.tb_new_task_description.clear()
 
         if feedback == True:
-            self.read_from_database()
+            self.update_tasks()
 
         else:
             msg_box = QMessageBox()
@@ -34,8 +36,9 @@ class MainWindow(QMainWindow):
     def done_tasks(self, id, checked):
         self.db.done_task(id, checked)
             
-    def remove_tasks(self,id):
-        self.db.remove_task(id)
+    def update_tasks(self,id = None):
+        if id is not None:
+            self.db.remove_task(id)
         children = []
         for i in range(self.ui.gl_tasks.count()):
             child = self.ui.gl_tasks.itemAt(i).widget()
@@ -54,13 +57,15 @@ class MainWindow(QMainWindow):
         new_checkbox.setText(tasks[i][1])
         new_btn.setText('❌')
         new_checkbox.setChecked(tasks[i][3])
+        if tasks[i][4] == 0:
+            new_checkbox.setStyleSheet("color: red")
         
         self.ui.gl_tasks.addWidget(new_checkbox, row, 0)
         self.ui.gl_tasks.addWidget(new_label, row, 1)
         self.ui.gl_tasks.addWidget(new_btn, row, 2)
 
         new_checkbox.toggled.connect(partial(self.done_tasks,tasks[i][0]))
-        new_btn.clicked.connect(partial(self.remove_tasks,tasks[i][0]))
+        new_btn.clicked.connect(partial(self.update_tasks,tasks[i][0]))
 
     def read_from_database(self):
         tasks = self.db.get_tasks()
