@@ -28,6 +28,7 @@ class Ui_MainWindow(object):
         icon = QIcon()
         icon.addFile(u"todo-list-icon.jpg", QSize(), QIcon.Normal, QIcon.Off)
         MainWindow.setWindowIcon(icon)
+        MainWindow.setStyleSheet(u"background-color: rgb(85, 170, 0);")
         MainWindow.setIconSize(QSize(100, 100))
         self.centralwidget = QWidget(MainWindow)
         self.centralwidget.setObjectName(u"centralwidget")
@@ -44,17 +45,29 @@ class Ui_MainWindow(object):
         self.btn_newtask.setObjectName(u"btn_newtask")
         font = QFont()
         font.setPointSize(15)
+        font.setBold(True)
         self.btn_newtask.setFont(font)
+        self.btn_newtask.setStyleSheet(u"background-color: rgb(0, 170, 0);")
 
         self.horizontalLayout.addWidget(self.btn_newtask)
 
         self.cb_priority = QCheckBox(self.centralwidget)
         self.cb_priority.setObjectName(u"cb_priority")
+        font1 = QFont()
+        font1.setFamilies([u"Centaur"])
+        font1.setPointSize(12)
+        font1.setBold(True)
+        font1.setItalic(False)
+        self.cb_priority.setFont(font1)
 
         self.horizontalLayout.addWidget(self.cb_priority)
 
         self.dateTimeEdit = QDateTimeEdit(self.centralwidget)
         self.dateTimeEdit.setObjectName(u"dateTimeEdit")
+        font2 = QFont()
+        font2.setPointSize(12)
+        self.dateTimeEdit.setFont(font2)
+        self.dateTimeEdit.setStyleSheet(u"background-color: rgb(0, 170, 0);")
 
         self.horizontalLayout.addWidget(self.dateTimeEdit)
 
@@ -63,13 +76,18 @@ class Ui_MainWindow(object):
 
         self.tb_new_task_title = QLineEdit(self.centralwidget)
         self.tb_new_task_title.setObjectName(u"tb_new_task_title")
-        self.tb_new_task_title.setFont(font)
+        font3 = QFont()
+        font3.setPointSize(15)
+        self.tb_new_task_title.setFont(font3)
+        self.tb_new_task_title.setStyleSheet(u"background-color: rgb(0, 170, 0);")
 
         self.verticalLayout.addWidget(self.tb_new_task_title)
 
         self.tb_new_task_description = QTextEdit(self.centralwidget)
         self.tb_new_task_description.setObjectName(u"tb_new_task_description")
         self.tb_new_task_description.setMaximumSize(QSize(16777215, 100))
+        self.tb_new_task_description.setFont(font3)
+        self.tb_new_task_description.setStyleSheet(u"background-color: rgb(0, 170, 0);")
 
         self.verticalLayout.addWidget(self.tb_new_task_description)
 
@@ -88,7 +106,7 @@ class Ui_MainWindow(object):
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"To Do List", None))
 #if QT_CONFIG(tooltip)
         self.btn_newtask.setToolTip(QCoreApplication.translate("MainWindow", u"add new task", None))
 #endif // QT_CONFIG(tooltip)

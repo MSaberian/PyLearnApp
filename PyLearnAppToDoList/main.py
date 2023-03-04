@@ -17,6 +17,11 @@ class MainWindow(QMainWindow):
         
         self.ui.btn_newtask.clicked.connect(self.new_task)
 
+        QToolTip.setFont(QFont('Centaur', pointSize=12))
+        
+        # self.panel = QWidget()
+        # self.ui.gl_tasks.setStyleSheet("background-color:black;")
+
     def new_task(self):
         new_title = self.ui.tb_new_task_title.text()
         new_description = self.ui.tb_new_task_description.toPlainText()
@@ -52,14 +57,17 @@ class MainWindow(QMainWindow):
     def add_task_to_grid(self,tasks,i,row):
 
         new_checkbox = QCheckBox()
-        # new_label = QLabel()
         new_btn = QPushButton()
-        # new_label.setText(tasks[i][2])
         new_checkbox.setText(tasks[i][1])
+        new_checkbox.setFont(QFont('Centaur', pointSize=15))
+        new_checkbox.setStyleSheet("background-color: red;")
         new_btn.setText('❌')
+        new_btn.setMaximumWidth(50)
         new_checkbox.setChecked(tasks[i][3])
         if tasks[i][4] == 0:
-            new_checkbox.setStyleSheet("color: red")
+            new_checkbox.setStyleSheet("background-color: pink; color: red")
+        else:
+            new_checkbox.setStyleSheet("background-color: rgb(75, 150, 0);; color: black")
 
         if tasks[i][5] == None:
             new_checkbox.setToolTip(tasks[i][2])
@@ -67,7 +75,6 @@ class MainWindow(QMainWindow):
             new_checkbox.setToolTip(tasks[i][2]+ '\n\n' + str(tasks[i][5]))
         
         self.ui.gl_tasks.addWidget(new_checkbox, row, 0)
-        # self.ui.gl_tasks.addWidget(new_label, row, 1)
         self.ui.gl_tasks.addWidget(new_btn, row, 2)
 
         new_checkbox.toggled.connect(partial(self.done_tasks,tasks[i][0]))
