@@ -2,6 +2,7 @@ import sys
 from functools import partial
 from PySide6.QtWidgets import *
 from PySide6.QtCore import *
+from PySide6.QtGui import *
 from main_window import Ui_MainWindow
 from database import Database
 
@@ -51,17 +52,22 @@ class MainWindow(QMainWindow):
     def add_task_to_grid(self,tasks,i,row):
 
         new_checkbox = QCheckBox()
-        new_label = QLabel()
+        # new_label = QLabel()
         new_btn = QPushButton()
-        new_label.setText(tasks[i][2])
+        # new_label.setText(tasks[i][2])
         new_checkbox.setText(tasks[i][1])
         new_btn.setText('❌')
         new_checkbox.setChecked(tasks[i][3])
         if tasks[i][4] == 0:
             new_checkbox.setStyleSheet("color: red")
+
+        if tasks[i][5] == None:
+            new_checkbox.setToolTip(tasks[i][2])
+        else:
+            new_checkbox.setToolTip(tasks[i][2]+ '\n\n' + str(tasks[i][5]))
         
         self.ui.gl_tasks.addWidget(new_checkbox, row, 0)
-        self.ui.gl_tasks.addWidget(new_label, row, 1)
+        # self.ui.gl_tasks.addWidget(new_label, row, 1)
         self.ui.gl_tasks.addWidget(new_btn, row, 2)
 
         new_checkbox.toggled.connect(partial(self.done_tasks,tasks[i][0]))

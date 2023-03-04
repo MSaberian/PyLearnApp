@@ -89,6 +89,9 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+#if QT_CONFIG(tooltip)
+        self.btn_newtask.setToolTip(QCoreApplication.translate("MainWindow", u"sdfsdfsdf", None))
+#endif // QT_CONFIG(tooltip)
         self.btn_newtask.setText(QCoreApplication.translate("MainWindow", u"+", None))
         self.cb_priority.setText(QCoreApplication.translate("MainWindow", u"Priority", None))
     # retranslateUi

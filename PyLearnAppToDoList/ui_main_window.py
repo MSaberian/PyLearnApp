@@ -89,7 +89,19 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+#if QT_CONFIG(tooltip)
+        self.btn_newtask.setToolTip(QCoreApplication.translate("MainWindow", u"add new task", None))
+#endif // QT_CONFIG(tooltip)
         self.btn_newtask.setText(QCoreApplication.translate("MainWindow", u"+", None))
+#if QT_CONFIG(tooltip)
+        self.cb_priority.setToolTip(QCoreApplication.translate("MainWindow", u"If this task is important clicked", None))
+#endif // QT_CONFIG(tooltip)
         self.cb_priority.setText(QCoreApplication.translate("MainWindow", u"Priority", None))
+#if QT_CONFIG(tooltip)
+        self.tb_new_task_title.setToolTip(QCoreApplication.translate("MainWindow", u"Title", None))
+#endif // QT_CONFIG(tooltip)
+#if QT_CONFIG(tooltip)
+        self.tb_new_task_description.setToolTip(QCoreApplication.translate("MainWindow", u"description", None))
+#endif // QT_CONFIG(tooltip)
     # retranslateUi
 
